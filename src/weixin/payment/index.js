@@ -186,12 +186,10 @@ export default class Payment {
     if (!orderResult.prepayId) {
       throw new Error(orderResult.errMsg || '获取prepayId失败')
     }
-    return {
-      orderInfo: this._getPayParamsByPrepayId(
-        orderResult.prepayId,
-        params.signType || this.options.signType
-      )
-    }
+    return this._getPayParamsByPrepayId(
+      orderResult.prepayId,
+      params.signType || this.options.signType
+    )
   }
 
   async orderQuery (params) {

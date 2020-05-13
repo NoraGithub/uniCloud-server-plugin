@@ -4,6 +4,15 @@
 
 调用`openapi`之前需要先进行初始化，详细使用方式请看下面介绍
 
+# 引入server-plugin
+
+```js
+// 由npm安装的引入方式
+const uniCloudOpenapi = require('@dcloudio/unicloud-server-plugin')
+// 插件市场导入的引入方式
+const uniCloudOpenapi = require('unicloud-server-plugin')
+```
+
 # 微信小程序平台
 
 直接使用微信开放能力，参数名与[微信服务端api](https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html)相对应，只是转为了驼峰形式。返回值也转为了驼峰形式
@@ -25,7 +34,6 @@
 **示例代码**
 
 ```js
-const uniCloudOpenapi = require('@dcloudio/unicloud-openapi')
 const openapi = uniCloudOpenapi.initWeixin({
   appId: 'appId',
   secret: 'secret'
@@ -1345,7 +1353,6 @@ exports.main = async (event, context) => {
 **示例代码**
 
 ```js
-const uniCloudOpenapi = require('@dcloudio/unicloud-openapi')
 const openapi = uniCloudOpenapi.initAlipay({
   appId: 'appId',
   secret: 'secret'
@@ -1453,10 +1460,7 @@ const openapi = uniCloudOpenapi.initAlipay({
 ```js
 // 云函数 - getOrderInfo
 exports.main = async function (event,context) {
-	let {
-		orderInfo,
-		orderResult // 可能还有其他对
-	} = await openapi.payment.getOrderInfo({
+	let	orderInfo = await openapi.payment.getOrderInfo({
 		openid: 'user openid',
 		subject: '订单标题',
 		body: '商品描述',

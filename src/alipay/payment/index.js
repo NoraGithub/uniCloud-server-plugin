@@ -45,14 +45,14 @@ export default class Payment extends AlipayBase {
           '&biz_content=' +
           encodeURIComponent(execParams.biz_content)
         ).substr(1)
-        return { orderInfo }
+        return orderInfo
       }
       case 'mp-alipay': {
         const orderResult = await this.unifiedOrder(params)
         if (!orderResult.tradeNo) {
           throw new Error('获取支付宝交易号失败')
         }
-        return { orderInfo: orderResult.tradeNo }
+        return orderResult.tradeNo
       }
       default:
         throw new Error(
