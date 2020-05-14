@@ -1,16 +1,16 @@
 # openapi简介
 
-`openapi`是`uniCloud`提供的能简单调用第三方api的方式，开发者无需关心请求发送，加密等，只需要关注输入和输出即可。
+`server`是`uniCloud`提供的能简单调用第三方api的方式，开发者无需关心请求发送，加密等，只需要关注输入和输出即可。
 
-调用`openapi`之前需要先进行初始化，详细使用方式请看下面介绍
+调用`server`之前需要先进行初始化，详细使用方式请看下面介绍
 
 # 引入server-plugin
 
 ```js
 // 由npm安装的引入方式
-const uniCloudOpenapi = require('@dcloudio/unicloud-server-plugin')
+const serverPlugin = require('@dcloudio/unicloud-server-plugin')
 // 插件市场导入的引入方式
-const uniCloudOpenapi = require('unicloud-server-plugin')
+const serverPlugin = require('unicloud-server-plugin')
 ```
 
 # 微信小程序平台
@@ -29,12 +29,12 @@ const uniCloudOpenapi = require('unicloud-server-plugin')
 
 **返回值说明**
 
-返回`openapi`实例用以调用微信开放能力
+返回`server`实例用以调用微信开放能力
 
 **示例代码**
 
 ```js
-const openapi = uniCloudOpenapi.initWeixin({
+const server = serverPlugin.initWeixin({
   appId: 'appId',
   secret: 'secret'
 })
@@ -80,7 +80,7 @@ const {
   openid,
   sessionKey,
   unionid
-} = await openapi.auth.code2Session(code)
+} = await server.auth.code2Session(code)
 ```
 
 ### auth.getAccessToken(Object object)
@@ -116,7 +116,7 @@ const {
 const {
   accessToken: 'xxxxx',
   expiresIn
-} = await openapi.auth.getAccessToken()
+} = await server.auth.getAccessToken()
 ```
 
 **注意**
@@ -167,7 +167,7 @@ const {
 // 使用微信支付订单号
 const {
   unionid
-} = await openapi.auth.code2Session({
+} = await server.auth.code2Session({
   accessToken: 'xxxxx',
   openid: 'xxxxx',
   transactionId: 'xxxxx'
@@ -176,7 +176,7 @@ const {
 // 使用商户订单号
 const {
   unionid
-} = await openapi.auth.code2Session({
+} = await server.auth.code2Session({
   accessToken: 'xxxxx',
   openid: 'xxxxx',
   mchId: 'xxxxx',
@@ -228,7 +228,7 @@ const {
 **示例代码**
 
 ```js
-const res = await openapi.analysis.getDailyRetain({
+const res = await server.analysis.getDailyRetain({
   accessToken: 'xxxxx',
   beginDate: 'yyyymmdd',
   endDate: 'yyyymmdd'
@@ -276,7 +276,7 @@ const res = await openapi.analysis.getDailyRetain({
 **使用示例**
 
 ```js
-const res = await cloud.openapi.analysis.getMonthlyRetain({
+const res = await cloud.server.analysis.getMonthlyRetain({
   accessToken: 'xxxxx',
   beginDate: 'yyyymmdd',
   endDate: 'yyyymmdd'
@@ -324,7 +324,7 @@ const res = await cloud.openapi.analysis.getMonthlyRetain({
 **使用示例**
 
 ```js
-const res = await openapi.analysis.getWeeklyRetain({
+const res = await server.analysis.getWeeklyRetain({
   accessToken: 'xxxxx',
   beginDate: 'yyyymmdd',
   endDate: 'yyyymmdd'
@@ -365,7 +365,7 @@ const res = await openapi.analysis.getWeeklyRetain({
 **使用示例**
 
 ```js
-const result = await cloud.openapi.analysis.getDailySummary({
+const result = await cloud.server.analysis.getDailySummary({
   accessToken: 'xxxxx',
   beginDate: 'yyyymmdd',
   endDate: 'yyyymmdd'
@@ -410,7 +410,7 @@ const result = await cloud.openapi.analysis.getDailySummary({
 **使用示例**
 
 ```js
-const result = await cloud.openapi.analysis.getDailyVisitTrend({
+const result = await server.analysis.getDailyVisitTrend({
   accessToken: 'xxxxx',
   beginDate: 'yyyymmdd',
   endDate: 'yyyymmdd'
@@ -455,7 +455,7 @@ const result = await cloud.openapi.analysis.getDailyVisitTrend({
 **使用示例**
 
 ```js
-const result = await cloud.openapi.analysis.getMonthlyVisitTrend({
+const result = await server.analysis.getMonthlyVisitTrend({
   accessToken: 'xxxxx',
   beginDate: '20170301',
   endDate: '20170331'
@@ -500,7 +500,7 @@ const result = await cloud.openapi.analysis.getMonthlyVisitTrend({
 **使用示例**
 
 ```js
-const result = await openapi.analysis.getWeeklyVisitTrend({
+const result = await server.analysis.getWeeklyVisitTrend({
   accessToken: 'xxxxx',
   beginDate: '20170306',
   endDate: '20170312'
@@ -606,7 +606,7 @@ const result = await openapi.analysis.getWeeklyVisitTrend({
 **使用示例**
 
 ```js
-const result = await openapi.analysis.getUserPortrait({
+const result = await server.analysis.getUserPortrait({
   accessToken: 'xxxxx',
   beginDate: '20170306',
   endDate: '20170312'
@@ -726,7 +726,7 @@ const result = await openapi.analysis.getUserPortrait({
 **使用示例**
 
 ```js
-const result = await openapi.analysis.getVisitDistribution({
+const result = await server.analysis.getVisitDistribution({
   accessToken: 'xxxxx',
   beginDate: '20170306',
   endDate: '20170306'
@@ -765,7 +765,7 @@ const result = await openapi.analysis.getVisitDistribution({
 **使用示例**
 
 ```js
-const result = await openapi.analysis.getVisitPage({
+const result = await server.analysis.getVisitPage({
   accessToken: 'xxxxx',
   beginDate: '20170306',
   endDate: '20170306'
@@ -803,7 +803,7 @@ const result = await openapi.analysis.getVisitPage({
 **使用示例**
 
 ```js
-openapi.customerServiceMessage.getTempMedia({
+server.customerServiceMessage.getTempMedia({
   accessToken: 'xxx',
   mediaId: ''
 })
@@ -886,7 +886,7 @@ openapi.customerServiceMessage.getTempMedia({
 **使用示例**
 
 ```js
-openapi.customerServiceMessage.getTempMedia({
+server.customerServiceMessage.getTempMedia({
   accessToken: 'xxx',
   mediaId: ''
 })
@@ -968,7 +968,7 @@ openapi.customerServiceMessage.getTempMedia({
 **使用示例**
 
 ```js
-openapi.customerServiceMessage.uploadTempMedia({
+server.customerServiceMessage.uploadTempMedia({
   accessToken: 'xxx',
   type: 'image',
   media: {
@@ -985,7 +985,7 @@ openapi.customerServiceMessage.uploadTempMedia({
 获取小程序二维码，适用于需要的码数量较少的业务场景。通过该接口生成的小程序码，永久有效，有数量限制.
 
 ```
-openapi.wxacode.createQRCode
+server.wxacode.createQRCode
 ```
 
 **入参说明**
@@ -1011,7 +1011,7 @@ openapi.wxacode.createQRCode
 ```js
 exports.main = async (event, context) => {
   try {
-    const result = await openapi.wxacode.createQRCode({
+    const result = await server.wxacode.createQRCode({
         path: 'page/index/index',
         width: 430
       })
@@ -1050,7 +1050,7 @@ exports.main = async (event, context) => {
 ```js
 exports.main = async (event, context) => {
   try {
-    const result = await openapi.wxacode.get({
+    const result = await server.wxacode.get({
         path: 'page/index/index',
         width: 430
       })
@@ -1092,7 +1092,7 @@ exports.main = async (event, context) => {
 ```js
 exports.main = async (event, context) => {
   try {
-    const result = await openapi.wxacode.getUnlimited({
+    const result = await server.wxacode.getUnlimited({
         path: 'page/index/index',
         width: 430
       })
@@ -1133,7 +1133,7 @@ exports.main = async (event, context) => {
 **使用示例**
 
 ```js
-openapi.img.aiCrop({
+server.img.aiCrop({
 	img: {
 	  contentType: 'image/png',
 	  value: Buffer
@@ -1202,7 +1202,7 @@ openapi.img.aiCrop({
 
 ```js
 exports.main = async (event, context) => {
-    const result = await openapi.img.scanQRCode({
+    const result = await server.img.scanQRCode({
 		img: {
 			contentType: 'image/png',
 			value: Buffer
@@ -1310,7 +1310,7 @@ exports.main = async (event, context) => {
 
 ```js
 exports.main = async (event, context) => {
-    const result = await openapi.img.superresolution({
+    const result = await server.img.superresolution({
 		img: {
 			contentType: 'image/png',
 			value: Buffer
@@ -1348,12 +1348,12 @@ exports.main = async (event, context) => {
 
 **返回值说明**
 
-返回`openapi`实例用以调用支付宝开放能力
+返回`server`实例用以调用支付宝开放能力
 
 **示例代码**
 
 ```js
-const openapi = uniCloudOpenapi.initAlipay({
+const server = serverPlugin.initAlipay({
   appId: 'appId',
   secret: 'secret'
 })
@@ -1382,7 +1382,7 @@ const openapi = uniCloudOpenapi.initAlipay({
 ```js
 const {
   openid
-} = await openapi.auth.code2Session(code)
+} = await server.auth.code2Session(code)
 ```
 
 # 统一支付
@@ -1405,7 +1405,7 @@ const {
 |      appId		|       String		|       是		|                         -								|     当前应用在对应支付平台的 appId	| 支付宝、微信	|
 |      mchId		|       String		|  微信支付必填	|                         -								|                 商户号				|     微信		|
 |       key			|       String		|  微信支付必填	|                         -								|            支付商户 md5 key			|     微信		|
-|       pfx			| String&#124;Buffer|  微信支付必填	|                         -								|     微信支付商户API证书，主要用于退款，	|     微信		|
+|       pfx			| String&#124;Buffer|  微信支付退款必填	|                         -								|     微信支付商户API证书，主要用于退款	|     微信		|
 |   privateKey		|       String		| 支付宝支付必填|                         -								|             应用私钥字符串			|    支付宝		|
 |     keyType		|       String		|       否		|                         -								|           应用私钥字符串类型			|    支付宝		|
 | alipayPublicKey	|       String		| 支付宝支付必填|                         -								|			支付宝公钥，验签使用		|    支付宝		|
@@ -1417,8 +1417,8 @@ const {
 ```js
 // 初始化微信支付
 const fs = require('fs') // 引入fs模块以处理微信支付商户API证书
-const uniCloudOpenapi = require('@dcloudio/unicloud-opanapi')
-const openapi = uniCloudOpenapi.initWeixin({
+const serverPlugin = require('@dcloudio/unicloud-server-plugin')
+const server = serverPlugin.initWeixin({
 	appId:'your appId',
 	mchId:'your mchId',
 	key: 'you parterner key',
@@ -1426,8 +1426,8 @@ const openapi = uniCloudOpenapi.initWeixin({
 })
 
 // 初始化支付宝支付
-const uniCloudOpenapi = require('@dcloudio/unicloud-opanapi')
-const openapi = uniCloudOpenapi.initAlipay({
+const serverPlugin = require('@dcloudio/unicloud-server-plugin')
+const server = serverPlugin.initAlipay({
 	appId:'your appId', 
 	privateKey:'your privateKey',
 	alipayPublicKey: 'you alipayPublicKey' // 使用支付时需传递此值做返回结果验签
@@ -1436,14 +1436,14 @@ const openapi = uniCloudOpenapi.initAlipay({
 
 ### 获取支付参数
 
-`openapi.payment.getOrderInfo`，此接口仅支持微信小程序、支付宝小程序、App平台
+`server.payment.getOrderInfo`，此接口仅支持微信小程序、支付宝小程序、App平台
 
 **入参说明**
 
 |参数名		|类型	|必填							|默认值	|说明																		|支持平台					|
 |:-:		|:-:	|:-:							|:-:	|:-:																		|:-:						|
 |openid		|String	|支付宝小程序、微信小程序必填	|-		|通过对应平台的getOpenid获取												|支付宝小程序、微信小程序	|
-|subject	|String	|支付宝支付必填，信支付时不可填写此项					|-		|订单标题																	|支付宝支付					|
+|subject	|String	|支付宝支付必填，微信支付时不可填写此项					|-		|订单标题																	|支付宝支付					|
 |body		|String	|微信支付必填					|-		|商品描述																	|微信支付					|
 |outTradeNo	|String	|必填							|-		|商户订单号,64个字符以内、只能包含字母、数字、下划线；需保证在商户端不重复	|							|
 |totalFee	|Number	|必填							|-		|订单金额，单位：分															|支付宝小程序、微信小程序	|
@@ -1460,7 +1460,7 @@ const openapi = uniCloudOpenapi.initAlipay({
 ```js
 // 云函数 - getOrderInfo
 exports.main = async function (event,context) {
-	let	orderInfo = await openapi.payment.getOrderInfo({
+	let	orderInfo = await server.payment.getOrderInfo({
 		openid: 'user openid',
 		subject: '订单标题', // 微信支付时不可填写此项
 		body: '商品描述',
@@ -1527,7 +1527,7 @@ uniCloud.callFunction({
 
 ### 查询订单
 
-`openapi.payment.orderQuery`, 根据商户订单号或者平台订单号查询订单信息，主要用于未接收到支付通知时可以使用此接口进行支付结果验证
+`server.payment.orderQuery`, 根据商户订单号或者平台订单号查询订单信息，主要用于未接收到支付通知时可以使用此接口进行支付结果验证
 
 **入参说明**
 
@@ -1553,7 +1553,7 @@ uniCloud.callFunction({
 
 ```js
 exports.main = async function(event) {
-  let res = await openapi.payment.orderQuery({
+  let res = await server.payment.orderQuery({
     outTradeNo: 'outTradeNo'
   })
   return res
@@ -1562,7 +1562,7 @@ exports.main = async function(event) {
 
 ### 关闭订单
 
-`openapi.payment.closeOrder`，用于交易创建后，用户在一定时间内未进行支付，可调用该接口直接将未付款的交易进行关闭，避免重复支付。
+`server.payment.closeOrder`，用于交易创建后，用户在一定时间内未进行支付，可调用该接口直接将未付款的交易进行关闭，避免重复支付。
 
 **注意**
 
@@ -1588,7 +1588,7 @@ exports.main = async function(event) {
 
 ```js
 exports.main = async function(event) {
-  let res = await openapi.payment.closeOrder({
+  let res = await server.payment.closeOrder({
     outTradeNo: 'outTradeNo'
   })
   return res
@@ -1597,7 +1597,7 @@ exports.main = async function(event) {
 
 ### 撤销订单
 
-`openapi.payment.cancelOrder`，**此接口仅支付宝支持**，支付交易返回失败或支付系统超时，调用该接口撤销交易。如果此订单用户支付失败，支付宝系统会将此订单关闭；如果用户支付成功，支付宝系统会将此订单资金退还给用户。 注意：只有发生支付系统超时或者支付结果未知时可调用撤销，其他正常支付的单如需实现相同功能请调用申请退款API。提交支付交易后调用【查询订单API】，没有明确的支付结果再调用【撤销订单API】。
+`server.payment.cancelOrder`，**此接口仅支付宝支持**，支付交易返回失败或支付系统超时，调用该接口撤销交易。如果此订单用户支付失败，支付宝系统会将此订单关闭；如果用户支付成功，支付宝系统会将此订单资金退还给用户。 注意：只有发生支付系统超时或者支付结果未知时可调用撤销，其他正常支付的单如需实现相同功能请调用申请退款API。提交支付交易后调用【查询订单API】，没有明确的支付结果再调用【撤销订单API】。
 
 **入参说明**
 
@@ -1618,7 +1618,7 @@ exports.main = async function(event) {
 
 ```js
 exports.main = async function(event) {
-  let res = await openapi.payment.cancelOrder({
+  let res = await server.payment.cancelOrder({
     outTradeNo: 'outTradeNo'
   })
   return res
@@ -1627,7 +1627,7 @@ exports.main = async function(event) {
 
 ### 申请退款
 
-`openapi.payment.refund`,当交易发生之后一段时间内，由于买家或者卖家的原因需要退款时，卖家可以通过退款接口将支付款退还给买家。
+`server.payment.refund`,当交易发生之后一段时间内，由于买家或者卖家的原因需要退款时，卖家可以通过退款接口将支付款退还给买家。
 
 **微信支付注意事项**
 
@@ -1665,7 +1665,7 @@ exports.main = async function(event) {
 
 ```js
 exports.main = async function(event) {
-  let res = await openapi.payment.refund({
+  let res = await server.payment.refund({
     outTradeNo: '商户订单号',
     outRefundNo: '商户退款单号', // 支付宝可不填此项
     totalFee: 1, // 订单总金额，支付宝可不填此项
@@ -1677,7 +1677,7 @@ exports.main = async function(event) {
 
 ### 查询退款
 
-`openapi.payment.refundQuery`，提交退款申请后，通过调用该接口查询退款状态。
+`server.payment.refundQuery`，提交退款申请后，通过调用该接口查询退款状态。
 
 **入参说明**
 
@@ -1745,7 +1745,7 @@ exports.main = async function(event) {
 
 ```js
 exports.main = async function(event) {
-  let res = await openapi.payment.refundQuery({
+  let res = await server.payment.refundQuery({
     outTradeNo: '商户订单号',
 	outRefundNo: '商户退款单号' // 支付宝必填
   })
@@ -1755,7 +1755,7 @@ exports.main = async function(event) {
 
 ### 下载交易账单
 
-`openapi.payment.downloadBill`，商户可以通过该接口下载历史交易清单。**仅微信支付支持**
+`server.payment.downloadBill`，商户可以通过该接口下载历史交易清单。**仅微信支付支持**
 
 **注意：**
 
@@ -1810,7 +1810,7 @@ exports.main = async function(event) {
 
 ```js
 exports.main = async function(event) {
-  let res = await openapi.payment.downloadBill({
+  let res = await server.payment.downloadBill({
     billDate: '20200202',
   })
   return res
@@ -1819,7 +1819,7 @@ exports.main = async function(event) {
 
 ### 下载资金账单
 
-`openapi.payment.downloadFundflow`,商户可以通过该接口下载自2017年6月1日起的历史资金流水账单。**仅微信支持**
+`server.payment.downloadFundflow`,商户可以通过该接口下载自2017年6月1日起的历史资金流水账单。**仅微信支持**
 
 **说明：**
 
@@ -1870,7 +1870,7 @@ exports.main = async function(event) {
 
 ```js
 exports.main = async function(event) {
-  let res = await openapi.payment.downloadFundflow({
+  let res = await server.payment.downloadFundflow({
     billDate: '20200202',
   })
   return res
@@ -1879,7 +1879,7 @@ exports.main = async function(event) {
 
 ### 支付结果通知处理
 
-`openapi.payment.verifyPaymentNotify`，用于在使用云函数Url化的云函数内检验并处理支付结果。
+`server.payment.verifyPaymentNotify`，用于在使用云函数Url化的云函数内检验并处理支付结果。
 
 **入参说明**
 
@@ -1901,14 +1901,14 @@ exports.main = async function(event) {
 
 ```js
 exports.main = async function(event) {
-  let res = await openapi.payment.verifyPaymentNotify(event)
+  let res = await server.payment.verifyPaymentNotify(event)
   return res
 }
 ```
 
 ### 退款结果通知
 
-`openapi.payment.verifyRefundNotify`，用于在使用云函数Url化的云函数内检验并处理支付结果。
+`server.payment.verifyRefundNotify`，用于在使用云函数Url化的云函数内检验并处理支付结果。
 
 **入参说明**
 
@@ -1934,7 +1934,7 @@ exports.main = async function(event) {
 
 ```js
 exports.main = async function(event) {
-  let res = await openapi.payment.verifyRefundNotify(event)
+  let res = await server.payment.verifyRefundNotify(event)
   return res
 }
 ```
