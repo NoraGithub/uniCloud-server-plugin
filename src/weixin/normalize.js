@@ -2,10 +2,10 @@ import { UniCloudError, camel2snakeJson, snake2camelJson } from '../shared/index
 
 function generateApiResult (apiName, data) {
   if (data.errcode) {
-    return {
-      errCode: data.errcode || -2,
-      errMsg: data.errmsg || `${apiName} fail`
-    }
+    throw new UniCloudError({
+      code: data.errcode || -2,
+      message: data.errmsg || `${apiName} fail`
+    })
   } else {
     delete data.errcode
     delete data.errmsg
