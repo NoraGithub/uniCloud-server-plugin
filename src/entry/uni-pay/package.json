@@ -1,6 +1,6 @@
 {
   "name": "@dcloudio/uni-pay",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "uniPay for uniCloud",
   "main": "index.js",
   "homepage": "https://github.com/dcloudio/uniCloud-server-plugin.git",
@@ -13,6 +13,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {}
 }
