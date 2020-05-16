@@ -1,8 +1,8 @@
 ## 简介
 
-`uniAccount`是一个适用于多端的用户身份管理工具。`uniAccount`内部对不同平台的 api 进行了拉齐，有助于开发者更方便的调用相关功能。
+`uni-account`是一个适用于多端的用户身份管理工具。`uni-account`内部对不同平台的 api 进行了拉齐，有助于开发者更方便的调用相关功能。
 
-## 引入 uniAccount
+## 引入 uni-account
 
 开发者可以自行选择是从插件市场导入还是从 npm 安装，引入方式略有不同，请看下面示例
 
@@ -16,7 +16,7 @@ const uniAccount = require('@dcloudio/uni-account')
 
 ## 初始化
 
-进行初始化操作返回 uniAccount 实例
+进行初始化操作返回 uni-account 实例
 
 ### 微信小程序
 

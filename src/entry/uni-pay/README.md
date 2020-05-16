@@ -1,17 +1,17 @@
 ## 简介
 
-`uniPay`是适用于`uniCloud`统一支付接口，目前支持支付宝和微信的支付 api（小程序端和 App 端）。使用`uniPay`可以让你不用为每个平台单独写一套逻辑，业务代码更简洁，逻辑更清晰。
+`uni-pay`是适用于`uniCloud`统一支付接口，目前支持支付宝和微信的支付 api（小程序端和 App 端）。使用`uni-pay`可以让你不用为每个平台单独写一套逻辑，业务代码更简洁，逻辑更清晰。
 
 **须知**
 
-- uniPay 对入参和返回值均做了驼峰转化，开发者在对照微信支付或者支付宝支付对应的文档时需要注意。
+- uni-pay 对入参和返回值均做了驼峰转化，开发者在对照微信支付或者支付宝支付对应的文档时需要注意。
 - 特殊参数`appId`、`mchId`需注意大小写
 - 所有金额被统一为以分为单位
 - 为避免无关参数干扰此文档仅列举必填参数，其余参数请参照[微信支付-小程序](https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=9_1)、[微信支付-App](https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_1)、[支付宝支付-小程序](https://opendocs.alipay.com/apis/api_1/alipay.trade.create)、[支付宝支付-App](https://opendocs.alipay.com/apis/api_1/alipay.trade.app.pay)
 - 微信支付沙箱环境不支持小程序支付，另外此沙箱环境只可以跑微信提供的测试用例不可以随意测试
 - 无论是微信还是支付宝，沙箱环境都不确保稳定，如果使用沙箱的过程中遇到疑难问题建议切换成正式环境测试
 
-## 引入 uniPay
+## 引入 uni-pay
 
 开发者可以自行选择是从插件市场导入还是从 npm 安装，引入方式略有不同，请看下面示例
 
@@ -25,7 +25,7 @@ const uniPay = require('@dcloudio/uni-pay')
 
 ## 初始化
 
-进行初始化操作返回 uniPay 实例
+进行初始化操作返回 uni-pay 实例
 
 ### 微信支付
 
@@ -51,7 +51,7 @@ const uniPayIns = uniPay.initWeixin({
 })
 ```
 
-### 支付宝小程序
+### 支付宝支付
 
 **入参说明**
 
