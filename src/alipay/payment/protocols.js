@@ -220,6 +220,9 @@ export default {
       transactionId: 'tradeNo',
       totalFee: 'totalAmount',
       cashFee: 'buyerPayAmount',
+      resultCode: function (returnValue) {
+        return returnValue.tradeStatus.replace('TRADE_', '')
+      },
       fundBillList: function (returnValue) {
         if (!returnValue.fundBillList) {
           return []

@@ -5,6 +5,22 @@ function parseFeeValue (returnValue, shouldParse) {
 }
 
 export default {
+  unifiedOrder: {
+    args: {
+      _purify: {
+        // suject在使用支付宝时必传，在微信支付这里特殊处理一下，直接删除
+        shouldDelete: ['subject']
+      }
+    }
+  },
+  getOrderInfo: {
+    args: {
+      _purify: {
+        // suject在使用支付宝时必传，在微信支付这里特殊处理一下，直接删除
+        shouldDelete: ['subject']
+      }
+    }
+  },
   orderQuery: {
     returnValue: function (returnValue) {
       parseFeeValue(returnValue, ['cashFee', 'totalFee', 'couponCount'])

@@ -1,7 +1,7 @@
-import WxPayment from '../weixin/payment/index'
-import AliPayment from '../alipay/payment/index'
+import WxPayment from '../../weixin/payment/index'
+import AliPayment from '../../alipay/payment/index'
 
-import { createApi } from '../shared/index'
+import { createApi } from '../../shared/index'
 
 export default {
   initWeixin: function (options = {}) {

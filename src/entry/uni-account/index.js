@@ -1,7 +1,7 @@
-import WxAuth from '../weixin/auth/index'
-import AliAuth from '../alipay/auth/index'
+import WxAuth from '../../weixin/auth/index'
+import AliAuth from '../../alipay/auth/index'
 
-import { createApi } from '../shared/index'
+import { createApi } from '../../shared/index'
 
 export default {
   initWeixin: function (options = {}) {

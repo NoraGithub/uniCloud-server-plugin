@@ -30,7 +30,10 @@ function parseImageData (data, url) {
 
 export default class Img {
   constructor (options) {
-    this.options = Object.assign({}, options)
+    this.options = Object.assign({
+      baseUrl: 'https://api.weixin.qq.com',
+      timeout: 5000
+    }, options)
   }
 
   async _requestWxOpenapi ({ name, url, data, options }) {
@@ -43,7 +46,7 @@ export default class Img {
     }
     const result = await callWxOpenApi({
       name: `img.${name}`,
-      url: `${this.options.baseurl}${buildUrl(url, data)}`,
+      url: `${this.options.baseUrl}${buildUrl(url, data)}`,
       data,
       options,
       defaultOptions

@@ -10,7 +10,7 @@ import { createApi } from '../shared/index'
 export default class WxApi {
   constructor (options) {
     this.options = Object.assign({}, {
-      baseurl: 'https://api.weixin.qq.com',
+      baseUrl: 'https://api.weixin.qq.com',
       timeout: 5000
     }, options)
     this.auth = createApi(Auth, this.options)

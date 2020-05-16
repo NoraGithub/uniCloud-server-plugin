@@ -35,7 +35,11 @@ function getSignStr (obj) {
 }
 
 function getNonceStr (length = 16) {
-  return Math.random().toString(32).substring(2)
+  let str = ''
+  while (str.length < length) {
+    str += Math.random().toString(32).substring(2)
+  }
+  return str.substring(0, length)
 }
 
 // 简易版Object转XML，只可在微信支付时使用，不支持嵌套

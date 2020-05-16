@@ -2,7 +2,10 @@ import { callWxOpenApi } from '../normalize'
 
 export default class Analysis {
   constructor (options) {
-    this.options = Object.assign({}, options)
+    this.options = Object.assign({
+      baseUrl: 'https://api.weixin.qq.com',
+      timeout: 5000
+    }, options)
   }
 
   async _requestWxOpenapi ({ name, url, data, options }) {
@@ -15,7 +18,7 @@ export default class Analysis {
     }
     const result = await callWxOpenApi({
       name: `analysis.${name}`,
-      url: `${this.options.baseurl}${url}?access_token=${data.accessToken}`,
+      url: `${this.options.baseUrl}${url}?access_token=${data.accessToken}`,
       data,
       options,
       defaultOptions

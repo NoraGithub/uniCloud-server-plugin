@@ -3,7 +3,10 @@ import { callWxOpenApi, buildUrl } from '../normalize'
 
 export default class CustomerServiceMessage {
   constructor (options) {
-    this.options = Object.assign({}, options)
+    this.options = Object.assign({
+      baseUrl: 'https://api.weixin.qq.com',
+      timeout: 5000
+    }, options)
   }
 
   async _requestWxOpenapi ({ name, url, data, options }) {
@@ -16,7 +19,7 @@ export default class CustomerServiceMessage {
     }
     const result = await callWxOpenApi({
       name: `customerServiceMessage.${name}`,
-      url: `${this.options.baseurl}${buildUrl(url, data)}`,
+      url: `${this.options.baseUrl}${buildUrl(url, data)}`,
       data,
       options,
       defaultOptions
