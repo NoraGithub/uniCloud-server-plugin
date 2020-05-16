@@ -43,7 +43,7 @@ const server = serverPlugin.initWeixin({
 
 ## 登录授权
 
-### auth.getOpenid(String code)
+### auth.code2Session(String code)
 
 使用微信小程序`login`返回的`code`获取`openid`，`unionid`等信息
 
@@ -167,7 +167,7 @@ const {
 // 使用微信支付订单号
 const {
   unionid
-} = await server.auth.code2Session({
+} = await server.auth.getPaidUnionId({
   accessToken: 'xxxxx',
   openid: 'xxxxx',
   transactionId: 'xxxxx'
@@ -176,7 +176,7 @@ const {
 // 使用商户订单号
 const {
   unionid
-} = await server.auth.code2Session({
+} = await server.auth.getPaidUnionId({
   accessToken: 'xxxxx',
   openid: 'xxxxx',
   mchId: 'xxxxx',
@@ -1442,7 +1442,7 @@ const server = serverPlugin.initAlipay({
 
 |参数名		|类型	|必填							|默认值	|说明																		|支持平台					|
 |:-:		|:-:	|:-:							|:-:	|:-:																		|:-:						|
-|openid		|String	|支付宝小程序、微信小程序必填	|-		|通过对应平台的getOpenid获取												|支付宝小程序、微信小程序	|
+|openid		|String	|支付宝小程序、微信小程序必填	|-		|通过对应平台的code2Session获取												|支付宝小程序、微信小程序	|
 |subject	|String	|支付宝支付必填，微信支付时不可填写此项					|-		|订单标题																	|支付宝支付					|
 |body		|String	|微信支付必填					|-		|商品描述																	|微信支付					|
 |outTradeNo	|String	|必填							|-		|商户订单号,64个字符以内、只能包含字母、数字、下划线；需保证在商户端不重复	|							|
