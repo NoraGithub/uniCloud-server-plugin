@@ -1,6 +1,12 @@
 ## 简介
 
-`uni-pay`是适用于`uniCloud`统一支付接口，目前支持支付宝和微信的支付 api（小程序端和 App 端）。使用`uni-pay`可以让你不用为每个平台单独写一套逻辑，业务代码更简洁，逻辑更清晰。
+`uni-pay`为`uniCloud`开发者提供了简单、易用、统一的支付能力封装。让开发者无需研究支付宝、微信等支付平台的后端开发、无需为它们编写不同代码，拿来即用，屏蔽差异。
+
+`uni-app`前端已经封装的全端支付 api `uni.requestPayment`，现在服务端也封装好了`uni-pay for uniCloud`，从此开发者可以极快的完成前后一体的支付业务。
+
+目前已封装 App 端（微信支付和支付宝支付）、微信小程序、支付宝小程序的支付能力。
+
+`uni-pay`是开源 sdk，可放心使用。本插件还包含示例工程，配置自己在微信和支付宝申请的相关配置后即可运行。
 
 **须知**
 
@@ -31,16 +37,16 @@ const uniPay = require('@dcloudio/uni-pay')
 
 **入参说明**
 
-|   参数名   |        类型        |       必填       |                        默认值                        |                  说明                  |
-| :--------: | :----------------: | :--------------: | :--------------------------------------------------: | :------------------------------------: |
-|   appId    |       String       |        是        |                          -                           |     当前应用在对应支付平台的 appId     |
-|   mchId    |       String       |        是        |                          -                           |                 商户号                 |
-|    key     |       String       |        是        |                          -                           |            支付商户 md5 key            |
-|    pfx     | String&#124;Buffer | 使用退款功能必填 |                          -                           |  微信支付商户 API 证书，主要用于退款   |
-|  timeout   |       Number       |        否        |                         5000                         |        请求超时时间，单位：毫秒        |
-|  signType  |       String       |        否        |                         MD5                          |                签名类型                |
-|  sandbox   |      Boolean       |        否        |                        false                         |            是否启用沙箱环境            |
-| clientType |       String       |        否        | 默认自动获取客户端类型，同 `context` 内的 `PLATFORM` | 客户端类型，主要用于返回客户端支付参数 |
+|   参数名   |  类型   |  必填  |                        默认值                        |                  说明                  |
+| :--------: | :-----: | :----: | :--------------------------------------------------: | :------------------------------------: |
+|   appId    | String  |   是   |                          -                           |     当前应用在对应支付平台的 appId     |
+|   mchId    | String  |   是   |                          -                           |                 商户号                 |
+|    key     | String  |   是   |                          -                           |            支付商户 md5 key            |
+|    pfx     | String  | Buffer |                   使用退款功能必填                   |                   -                    | 微信支付商户 API 证书，主要用于退款 |
+|  timeout   | Number  |   否   |                         5000                         |        请求超时时间，单位：毫秒        |
+|  signType  | String  |   否   |                         MD5                          |                签名类型                |
+|  sandbox   | Boolean |   否   |                        false                         |            是否启用沙箱环境            |
+| clientType | String  |   否   | 默认自动获取客户端类型，同 `context` 内的 `PLATFORM` | 客户端类型，主要用于返回客户端支付参数 |
 
 ```js
 const uniPayIns = uniPay.initWeixin({
@@ -93,9 +99,9 @@ const uniPayIns = uniPay.initAlipay({
 
 **返回值说明**
 
-|  参数名   |        类型        |                                  说明                                  | 支持平台 |
-| :-------: | :----------------: | :--------------------------------------------------------------------: | :------: |
-| orderInfo | Object&#124;String | 客户端支付所需参数，直接返回给客户端即可，下面会介绍如何搭配客户端使用 |          |
+|  参数名   |  类型  |  说明  |                                支持平台                                |
+| :-------: | :----: | :----: | :--------------------------------------------------------------------: |
+| orderInfo | Object | String | 客户端支付所需参数，直接返回给客户端即可，下面会介绍如何搭配客户端使用 |  |
 
 **使用示例**
 
@@ -325,7 +331,7 @@ exports.main = async function (event) {
 |      refundId       |         String          |                                                                                                       平台退款单号                                                                                                       |          |
 |    refundChannel    |         String          |                                           退款渠道，ORIGINAL—原路退款，BALANCE—退回到余额，OTHER_BALANCE—原账户异常退到其他余额账户，OTHER_BANKCARD—原银行卡异常退到其他银行卡                                           |          |
 |      refundFee      |         Number          |                                                                                                       申请退款金额                                                                                                       |          |
-| settlementRefundFee |         Number          |                                                                       退款金额,退款金额=申请退款金额-非充值代金券退款金额，退款金额<=申请退款金额                                                                        |          |
+| settlementRefundFee |         Number          |                                                                      退款金额,退款金额=申请退款金额-非充值代金券退款金额，退款金额&lt;=申请退款金额                                                                      |          |
 |    refundStatus     |         String          | 退款状态，SUCCESS—退款成功，REFUNDCLOSE—退款关闭，PROCESSING—退款处理中，CHANGE—退款异常，退款到银行发现用户的卡作废或者冻结了，导致原路退款银行卡失败，可前往商户平台（pay.weixin.qq.com）-交易中心，手动处理此笔退款。 |          |
 |   couponRefundFee   |         Number          |                                                                                                     总代金券退款金额                                                                                                     |          |
 |  couponRefundCount  |         Number          |                                                                                                    退款代金券使用数量                                                                                                    |          |
