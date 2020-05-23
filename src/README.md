@@ -1,3 +1,5 @@
+本文档为此项目开发时需注意事项
+
 # 参数说明
 
 接收驼峰形式参数，返回驼峰形式参数
@@ -39,7 +41,6 @@
 // 整体转化
 apiName: {
     args: function(fromArgs) {
-        // 直接转换属性名称的会删除旧属性名
         fromArgs.a = fromArgs.a * 100
         return fromArgs
     }
@@ -51,7 +52,7 @@ apiName: {
         _pre (args){ // 应用其他转换规则之前处理
             return args
         },
-        keyAfter:'keyBefore',
+        keyAfter:'keyBefore', // 直接转换属性名称的会删除旧属性名
         keyAfter_100: function(fromArgs) {
             // 通过function转化的如需删除旧属性名，需要注意防止其他转换的时候找不到
             return fromArgs.keyBefore * 100 - fromArgs.discount * 100

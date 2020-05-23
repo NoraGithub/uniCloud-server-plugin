@@ -1,9 +1,9 @@
 {
-  "name": "@dcloudio/uni-pay",
-  "version": "1.0.2",
-  "description": "uniPay for uniCloud",
+  "name": "@dcloudio/unipay",
+  "version": "1.0.3",
+  "description": "unipay for uniCloud",
   "main": "index.js",
-  "homepage": "https://github.com/dcloudio/uniCloud-server-plugin.git",
+  "homepage": "https://uniapp.dcloud.io/uniCloud/unipay",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dcloudio/uniCloud-server-plugin.git"

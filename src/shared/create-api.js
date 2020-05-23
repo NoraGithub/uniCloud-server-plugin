@@ -26,7 +26,6 @@ function parseParams (params = {}, rule) {
     for (const key in rule) {
       const parser = rule[key]
       if (isFn(parser) && internalKeys.indexOf(key) === -1) {
-        // 通过function转化的默认不删除旧属性名
         params[key] = parser(params)
       } else if (typeof parser === 'string' && internalKeys.indexOf(key) === -1) {
         // 直接转换属性名称的删除旧属性名

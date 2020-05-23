@@ -15,9 +15,7 @@ if (process.env.NODE_ENV === 'production') {
   )
 }
 
-const modulesToBuild = ['uni-pay', 'uni-account']
-
-const config = modulesToBuild.map((moduleName) => {
+module.exports = function (moduleName) {
   return {
     input: `src/entry/${moduleName}/index.js`,
     output: {
@@ -42,6 +40,4 @@ const config = modulesToBuild.map((moduleName) => {
       ...builtinModules
     ]
   }
-})
-
-module.exports = config
+}

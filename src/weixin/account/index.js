@@ -25,25 +25,16 @@ export default class Auth {
     return result
   }
 
-  async getPaidUnionId (data) {
-    const url = '/wxa/getpaidunionid'
+  async code2Session (code) {
+    const url = '/sns/jscode2session'
     const result = await this._requestWxOpenapi({
-      name: 'getPaidUnionId',
-      url,
-      data
-    })
-    return result
-  }
-
-  async getAccessToken () {
-    const url = '/cgi-bin/token'
-    const result = await this._requestWxOpenapi({
-      name: 'getAccessToken',
+      name: 'code2Session',
       url,
       data: {
-        grant_type: 'client_credential',
+        grant_type: 'authorization_code',
         appid: this.options.appId,
-        secret: this.options.secret
+        secret: this.options.secret,
+        js_code: code
       }
     })
     return result

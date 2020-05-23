@@ -1,9 +1,9 @@
 {
   "name": "@dcloudio/uni-account",
   "version": "1.0.2",
-  "description": "uniAccount from uniCloud",
+  "description": "uni-account from uniCloud",
   "main": "index.js",
-  "homepage": "https://github.com/dcloudio/uniCloud-server-plugin.git",
+  "homepage": "https://uniapp.dcloud.io/uniCloud/uni-account",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dcloudio/uniCloud-server-plugin.git"
