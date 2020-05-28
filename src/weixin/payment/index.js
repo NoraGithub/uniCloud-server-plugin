@@ -132,6 +132,7 @@ export default class Payment {
     let defaultTradeType
     switch (this.options.clientType) {
       case 'app-plus':
+        delete params.openid
         defaultTradeType = 'APP'
         break
       case 'mp-weixin':

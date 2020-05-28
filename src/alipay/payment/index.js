@@ -32,6 +32,7 @@ export default class Payment extends AlipayBase {
   async getOrderInfo (params) {
     switch (this.options.clientType) {
       case 'app-plus': {
+        delete params.openid
         const data = {}
         if (params.notifyUrl) {
           data.notifyUrl = params.notifyUrl
