@@ -81,6 +81,9 @@ export default class Payment {
   }
 
   async _requestWxpay (params, apiName, needPfx = false) {
+    if (needPfx && !this.options.pfx) {
+      throw new Error('此接口需要微信支付证书（请传入pfx字段）')
+    }
     if (apiName !== 'getSandboxKey') {
       await this._initSandbox()
     }
